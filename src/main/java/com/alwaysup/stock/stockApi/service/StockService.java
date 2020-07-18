@@ -28,15 +28,6 @@ public interface StockService {
 	public Stock getStockById(int id) throws IllegalArgumentException;
 
 	/**
-	 * Update the Stock only if the data provided is valid (id cannot be changed)
-	 * 
-	 * @param updatedStock the stock with the updated values
-	 * @return 0 if successful, positive integer for error
-	 * @throws IllegalArgumentException if invalid input
-	 */
-	public int updateStock(Stock updatedStock) throws IllegalArgumentException;
-
-	/**
 	 * Delete a Stock by marking it as inactive
 	 * 
 	 * @param stock

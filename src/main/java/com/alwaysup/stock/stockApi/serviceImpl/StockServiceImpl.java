@@ -74,34 +74,12 @@ public class StockServiceImpl implements StockService {
 	 * @inheritDoc
 	 */
 	@Override
-	public int updateStock(Stock stock) {
-		verifier.verifyNotNull(stock);
-		verifier.verifyString(stock.getSymbol());
-		verifier.verifyString(stock.getExchange());
-		try {
-			Stock stockToUpdate = stockRepository.getById(stock.getId());
-			if (stockToUpdate.getSymbol().equals(stock.getSymbol())
-					&& stockToUpdate.getExchange().equals(stock.getExchange())) {
-				stockRepository.save(stockToUpdate);
-			} else {
-				return 2;
-			}
-		} catch (Exception e) {
-			return 1;
-		}
-		return 0;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	@Override
 	public int deleteStock(Stock stock) {
 		verifier.verifyNotNull(stock);
 		verifier.verifyString(stock.getSymbol());
 		verifier.verifyString(stock.getExchange());
 		try {
-			Stock stockToDelete = stockRepository.getById(stock.getId());
+			Stock stockToDelete = stockRepository.getBySymbol(stock.getSymbol());
 			stockToDelete.setActive(0);
 			stockRepository.save(stockToDelete);
 		} catch (Exception e) {
