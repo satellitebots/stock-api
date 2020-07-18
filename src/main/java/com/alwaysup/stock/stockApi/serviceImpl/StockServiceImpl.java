@@ -1,14 +1,12 @@
 package com.alwaysup.stock.stockApi.serviceImpl;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.alwaysup.stock.stockApi.model.Stock;
@@ -37,7 +35,8 @@ public class StockServiceImpl implements StockService {
 		}
 		Stock newStock = new Stock(symbol, fullName, exchange);
 		try {
-			String urlStr = String.format("http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%s&region=1&lang=en",symbol);
+			String urlStr = String.format("http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%s&region=1&lang=en",
+					symbol);
 			URL url = new URL(urlStr);
 			JSONTokener tokener = new JSONTokener(url.openStream());
 			JSONObject jsonResponse = new JSONObject(tokener);
@@ -46,7 +45,8 @@ public class StockServiceImpl implements StockService {
 			String respExch = data.getString("exch");
 			String respExchange = data.getString("exchDisp");
 			String respName = data.getString("name");
-			if (symbol.toUpperCase().equals(respSymbol) && (exchange.toUpperCase().equals(respExch) || exchange.toUpperCase().equals(respExchange))) {
+			if (symbol.toUpperCase().equals(respSymbol)
+					&& (exchange.toUpperCase().equals(respExch) || exchange.toUpperCase().equals(respExchange))) {
 				newStock.setExchange(respExchange);
 				newStock.setFullName(respName);
 			} else {
@@ -80,8 +80,8 @@ public class StockServiceImpl implements StockService {
 		verifier.verifyString(stock.getExchange());
 		try {
 			Stock stockToUpdate = stockRepository.getById(stock.getId());
-			if (stockToUpdate.getSymbol().equals(stock.getSymbol()) && 
-					stockToUpdate.getExchange().equals(stock.getExchange())) {
+			if (stockToUpdate.getSymbol().equals(stock.getSymbol())
+					&& stockToUpdate.getExchange().equals(stock.getExchange())) {
 				stockRepository.save(stockToUpdate);
 			} else {
 				return 2;
@@ -119,7 +119,7 @@ public class StockServiceImpl implements StockService {
 		verifier.verifyString(exchange);
 		return stockRepository.getAllByExchange(exchange, pageable);
 	}
-	
+
 	public List<Stock> getStocks(Pageable pageable) throws IllegalArgumentException {
 		verifier.verifyNotNull(pageable);
 		return stockRepository.getAll(pageable);

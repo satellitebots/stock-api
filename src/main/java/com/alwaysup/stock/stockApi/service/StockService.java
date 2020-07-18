@@ -2,7 +2,6 @@ package com.alwaysup.stock.stockApi.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.alwaysup.stock.stockApi.model.Stock;
@@ -54,7 +53,7 @@ public interface StockService {
 	 * @throws IllegalArgumentException if invalid input
 	 */
 	public List<Stock> getStocksByExchange(String exchange, Pageable pageable) throws IllegalArgumentException;
-	
+
 	/**
 	 * Get a Pageable List of Stocks
 	 * 

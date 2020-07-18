@@ -2,12 +2,11 @@ package com.alwaysup.stock.stockApi.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
 public class Stock {
@@ -21,11 +20,10 @@ public class Stock {
 	private String exchange;
 	@JsonIgnore
 	private int active;
-	
-	public Stock()
-    {
-     super();
-    }
+
+	public Stock() {
+		super();
+	}
 
 	public Stock(String symbol, String fullName, String exchange) {
 		this.symbol = symbol;

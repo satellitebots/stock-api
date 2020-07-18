@@ -2,12 +2,10 @@ package com.alwaysup.stock.stockApi.repository;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.jpa.repository.Query;
 
 import com.alwaysup.stock.stockApi.model.Stock;
 
@@ -51,7 +49,7 @@ public interface StockRepository extends CrudRepository<Stock, Integer> {
 	 */
 	@Query("Select stock from Stock stock where stock.symbol=?1 and stock.exchange=?2 and stock.active=1")
 	public Stock getBySymbolAndExchange(String symbol, String exchange);
-	
+
 	/**
 	 * Get Stock by it's symbol
 	 * 
