@@ -98,6 +98,7 @@ public class StockServiceImpl implements StockService {
 		return stockRepository.getAllByExchange(exchange, pageable);
 	}
 
+	@Override
 	public List<Stock> getStocks(Pageable pageable) throws IllegalArgumentException {
 		verifier.verifyNotNull(pageable);
 		return stockRepository.getAll(pageable);
