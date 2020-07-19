@@ -16,7 +16,7 @@ public interface StockRepository extends CrudRepository<Stock, Integer> {
 	 * Get All stocks
 	 * 
 	 * @param pageable
-	 * @return
+	 * @return {@link List} of {@link Stock}s that are active by requested page
 	 */
 	@Query("Select stock from Stock stock where stock.active=1 order by id")
 	public List<Stock> getAll(Pageable pageable);
@@ -26,7 +26,8 @@ public interface StockRepository extends CrudRepository<Stock, Integer> {
 	 * 
 	 * @param exchange
 	 * @param pageable
-	 * @return
+	 * @return {@link List} of {@link Stock}s that are active by requested page and
+	 *         exchange
 	 */
 	@Query("Select stock from Stock stock where stock.exchange=?1 and stock.active=1 order by id")
 	public List<Stock> getAllByExchange(String exchange, Pageable pageable);
@@ -35,7 +36,7 @@ public interface StockRepository extends CrudRepository<Stock, Integer> {
 	 * Get Stock by it's ID
 	 * 
 	 * @param id
-	 * @return
+	 * @return {@link Stock} that matches the id provided
 	 */
 	@Query("Select stock from Stock stock where stock.id=?1 and stock.active=1")
 	public Stock getById(int id);
@@ -45,7 +46,7 @@ public interface StockRepository extends CrudRepository<Stock, Integer> {
 	 * 
 	 * @param symbol
 	 * @param exchange
-	 * @return
+	 * @return {@link Stock} that matches the symbol and exchange provided
 	 */
 	@Query("Select stock from Stock stock where stock.symbol=?1 and stock.exchange=?2 and stock.active=1")
 	public Stock getBySymbolAndExchange(String symbol, String exchange);
@@ -55,7 +56,7 @@ public interface StockRepository extends CrudRepository<Stock, Integer> {
 	 * 
 	 * @param symbol
 	 * @param exchange
-	 * @return
+	 * @return {@link Stock} that matches the symbol provided
 	 */
 	@Query("Select stock from Stock stock where stock.symbol=?1 and stock.active=1")
 	public Stock getBySymbol(String symbol);
