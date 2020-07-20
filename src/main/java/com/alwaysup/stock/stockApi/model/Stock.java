@@ -76,4 +76,16 @@ public class Stock {
 	public String toString() {
 		return String.format("%s:%s", this.exchange, this.symbol);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Stock compStock = null;
+		try {
+			compStock = (Stock) obj;
+		} catch (Exception e) {
+			return false;
+		}
+		return this.symbol.equalsIgnoreCase(compStock.getSymbol())
+				&& this.exchange.equalsIgnoreCase(compStock.getExchange());
+	}
 }

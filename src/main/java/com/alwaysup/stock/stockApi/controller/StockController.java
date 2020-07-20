@@ -109,7 +109,7 @@ public class StockController {
 	/**
 	 * Handle general exception
 	 * 
-	 * @return
+	 * @return {@link ResponseEntity} with the error message
 	 */
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleGeneralException() {

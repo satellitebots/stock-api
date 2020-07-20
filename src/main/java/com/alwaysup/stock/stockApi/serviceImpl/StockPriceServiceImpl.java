@@ -14,7 +14,7 @@ import com.alwaysup.stock.stockApi.repository.StockRepository;
 import com.alwaysup.stock.stockApi.service.StockService;
 import com.alwaysup.stock.stockApi.util.Verifier;
 
-public class StockServiceImpl implements StockService {
+public class StockPriceServiceImpl implements StockService {
 	@Autowired
 	private StockRepository stockRepository;
 
